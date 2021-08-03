@@ -8,7 +8,6 @@ let createWindow = () => {
     win = new BrowserWindow({
         width: 1200,
         height: 800,
-        // frame: false
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
@@ -16,8 +15,7 @@ let createWindow = () => {
         }
 
     });
-    // win.loadURL(`file://${__dirname}/index.html`);
-    //win.webContents.openDevTools();
+
     win.loadFile(`index.html`);
     win.webContents.openDevTools()
     return win
@@ -43,17 +41,3 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
-
-downloadAs = async (win, url, name) => {
-    debugger;
-    const blob = await axios.get(url, {
-        headers: {
-            'Content-Type': 'application/octet-stream',
-        },
-        responseType: 'blob',
-    });
-    const a = win.document.createElement('a');
-    a.href = win.URL.createObjectURL(blob.data);
-    a.download = name;
-    // a.click();
-};
