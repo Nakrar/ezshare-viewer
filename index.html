@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-	<meta charset="UTF-8">
-	<title>Crazy Images</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
-	<script src="https://code.angularjs.org/1.6.4/angular-route.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Crazy Images</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
-	<h1>Hello World!</h1>
-	We are using Node.js <span id="node-version"></span>,
-	Chromium <span id="chrome-version"></span>,
-	and Electron <span id="electron-version"></span>.
-	<div id="content">
-		<header ng-controller="headCtrl">
-			<div class="option" ng-click="close()">&#x2716;</div>
-			<div class="option" ng-click="maximize()">&#x1f5d6;</div>
-			<div class="option" ng-click="minimize()">&#x1f5d5;</div>
-		</header>
-		<div id="mainContent" ng-view></div>
-	</div>
-	<script src="script.js"></script>
+<div>
+    <h1>Hello World!</h1>
+    We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>.
+</div>
+<img id="down-image" alt="here is your image"
+     src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"/>
+<img id="prev-image" alt="here is your image" src=""/>
+<img id="full-image" alt="here is your image" src=""/>
 </body>
 </html>

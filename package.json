@@ -9,6 +9,7 @@
   "author": "codedamn",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "electron-screenshot": "^1.0.4",
     "image-size": "^0.5.4"
   },
