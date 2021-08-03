@@ -200,7 +200,20 @@ div#usefulButtons {
 
 img {
     height: 700px;
-    width:  700px;
+    width: 700px;
     background: #e6e6e6;
     margin: 2px;
+}
+
+button {
+    height: 18px;
+    width: 100px;
+}
+
+#error-container{
+    cursor: pointer;
+    background: red;
+    opacity: 0.7;
+    position: absolute;
+    user-select: none;
 }

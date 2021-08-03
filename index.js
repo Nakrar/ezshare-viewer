@@ -1,5 +1,5 @@
 const {BrowserWindow, app} = require('electron');
-// include the Node.js 'path' module at the top of your file
+
 const path = require('path')
 
 let win;
@@ -13,7 +13,6 @@ let createWindow = () => {
             nodeIntegration: true,
             contextIsolation: false,
         }
-
     });
 
     win.loadFile(`index.html`);
@@ -23,12 +22,6 @@ let createWindow = () => {
 
 app.whenReady().then(() => {
     createWindow()
-        .then(win => downloadAs(
-                win,
-                "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
-                "name",
-            )
-        )
         .catch(e => {
             throw e
         })
