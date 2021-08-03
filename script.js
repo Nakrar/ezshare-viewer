@@ -3,7 +3,7 @@ const axios = require("axios");
 document.addEventListener("DOMContentLoaded", function (event) {
 
     const HOST = "http://ezshare.card/";
-    const IMG_X_PATH = "//table/tbody/tr[2]/td/a/img"
+    const IMG_X_PATH = "//tbody/tr[2]/td/a/img"
     const IMG_PREV = document.getElementById('prev-image');
     const IMG_FULL = document.getElementById('full-image');
     const BUTTON_NEXT = document.getElementById('next-button');
@@ -20,8 +20,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let results = [];
 
         const newDiv = document.createElement("div");
-        newDiv.innerHTML = response.html;
+        newDiv.onerror = () => {
+        };
+        newDiv.innerHTML = response.data;
         const allElementsUnderPreA = document.evaluate(IMG_X_PATH, newDiv, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        newDiv.remove()
 
         for (let i = 0, l = allElementsUnderPreA.snapshotLength; i < l; i++) {
             let el = allElementsUnderPreA.snapshotItem(i)
@@ -42,21 +45,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
         ERROR_CONTAINER.hidden = false;
     }
 
-    const handleClickError = (error) => {
+    const handleClickError = () => {
         ERROR_CONTAINER.hidden = true;
     }
 
     const setDisplayImage = (imgNode) => {
         let filePath = imgNode.src.split("thumbnail")[1];
-        IMG_PREV.src = HOST + "thumbnail" + filePath;
-        IMG_FULL.src = HOST + "download" + filePath;
+        let newPrev = HOST + "thumbnail" + filePath;
+        let newFull = HOST + "download" + filePath;
+        if (IMG_PREV.src !== newPrev || IMG_FULL.src !== newFull) {
+            IMG_PREV.src = HOST + "thumbnail" + filePath;
+            IMG_PREV.hidden = false;
+            IMG_FULL.src = "";
+            IMG_FULL.src = HOST + "download" + filePath;
+        }
     }
 
     const updateButtonStatus = (nextImageId) => {
-        BUTTON_NEXT.disabled = true;
-        BUTTON_CURR.disabled = true;
-        BUTTON_PREV.disabled = true;
+        if (g_Images.length === 0) {
+            BUTTON_NEXT.disabled = true;
+            BUTTON_CURR.disabled = true;
+            BUTTON_PREV.disabled = true;
+            return
+        }
 
+        BUTTON_NEXT.disabled = false;
+        BUTTON_CURR.disabled = false;
+        BUTTON_PREV.disabled = false;
         if (nextImageId === 0) {
             BUTTON_NEXT.disabled = true;
             BUTTON_CURR.disabled = true;
@@ -96,18 +111,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     throw new Error("not a 200 response")
                 }
                 g_Images = listOfAllImg(response)
-                setDisplayImage(g_Images[g_CurrentImage])
-                updateButtonStatus(g_CurrentImage)
+                if (g_Images.length > 0) {
+                    setDisplayImage(g_Images[0])
+                    updateButtonStatus(0)
+                }
             })
             .catch((err) => {
                 showError(err)
             });
     };
 
+    ERROR_CONTAINER.hidden = true;
+    updateButtonStatus()
+
     setInterval(() => {
         main();
     }, 1000);
 
+    IMG_FULL.onload = () => {
+        IMG_PREV.hidden = true;
+    }
     BUTTON_NEXT.addEventListener("click", handleNextClick)
     BUTTON_PREV.addEventListener("click", handlePrevClick)
     BUTTON_CURR.addEventListener("click", handleCurrClick)
