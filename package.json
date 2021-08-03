@@ -1,17 +1,13 @@
 {
-  "name": "crazyimages",
+  "name": "ezshare-viewer",
   "version": "1.0.0",
-  "description": "Best image editor (better than instagram)",
+  "description": "Allows for the instant view of the latest photos on your ez-share Wi-Fi sd-card.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "codedamn",
+  "scripts": {},
+  "author": "nakrar",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
-    "electron-screenshot": "^1.0.4",
-    "image-size": "^0.5.4"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "electron": "^13.1.7"
