@@ -6,7 +6,7 @@ Enables you to use your device for instant playback from your camera.
 
 ## Download
 
-You can download the latest version at the [release section]()
+You can download the latest version at the [release section](https://github.com/Nakrar/ezshare-viewer/releases)
 
 ## Functionality
 
