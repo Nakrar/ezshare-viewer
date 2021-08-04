@@ -2,16 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EzShare</title>
+    <title>EzShare-viewer</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
 <img id="prev-image" alt="Preview image" src=""/>
 <img id="full-image" alt="Full image" src=""/>
+<div id="message-container">
+    Once you'll get connected to ez-share Wi-Fi, the latest image from your library is going to be displayed here.<br>
+    The latest picture is going to be automatically refreshed when you shoot.<br>
+    Once pictures loaded, you can use navigation buttons at the bottom to scroll through your latest pictured.<br>
+    <br>
+    When you scroll your library, the latest picture is not going to be displayed.<br>
+    If you want to re-enable automatic refresh, press "Latest" button.
+</div>
 <div id="button-container">
-    <button id="prev-button">Previous</button>
-    <button id="curr-button">Current</button>
+    <button id="previous-button">Previous</button>
+    <button id="latest-button">Latest</button>
     <button id="next-button">Next</button>
 </div>
 <div id="error-container"></div>
